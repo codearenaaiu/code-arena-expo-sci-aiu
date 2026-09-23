@@ -58,7 +58,7 @@ body {
 }
 
 /* Floating Tech Squares using radial-gradient dots */
-.floating-data-nodes {
+/* .floating-data-nodes {
     position: absolute;
     inset: 0;
     background-image: 
@@ -68,7 +68,7 @@ body {
     background-size: 250px 250px, 400px 400px, 300px 300px;
     background-position: 15% 20%, 80% 60%, 45% 85%;
     opacity: 0.8;
-}
+} */
 
 /* Cyber Grid & Scanline Background */
 /* .grid-background {
@@ -125,7 +125,7 @@ body {
 }
 
 .section {
-    padding: 4.5rem 0;
+    padding: 1.25rem 0;
 }
 
 .section-title-wrap {
