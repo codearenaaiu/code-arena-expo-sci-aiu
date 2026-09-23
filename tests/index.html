@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CODE ARENA >_ EXPO 2026 | AIU × SCI</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&family=JetBrains+Mono:wght@400;500;700;800&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
+    
+    <!-- Clean External Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Global Canvas: Chevron Watermark + Square Data Nodes + Dark Grid -->
+    <div class="global-canvas" aria-hidden="true">
+        <div class="grid-background"></div>
+        <div class="floating-data-nodes"></div>
+        <svg class="bg-chevron" viewBox="0 0 400 600" fill="none">
+            <path d="M40 40 L310 300 L40 560" stroke="currentColor" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </div>
+    <div class="scanline" aria-hidden="true"></div>
+
+    <!-- Navigation Header -->
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="logo-group">
+                <a href="#" class="logo-link" aria-label="Albukhary International University Home">
+                    <img src="aiu-logo.png" alt="AIU Logo" class="brand-logo logo-aiu" onerror="this.style.display='none'">
+                </a>
+                <span class="logo-divider" aria-hidden="true"></span>
+                <a href="#" class="logo-link" aria-label="School of Computing and Informatics">
+                    <img src="sci-logo.png" alt="SCI Logo" class="brand-logo logo-sci" onerror="this.style.display='none'">
+                </a>
+            </div>
+            <nav class="nav-links">
+                <a href="#hero">OVERVIEW</a>
+                <a href="#structure">BRACKET</a>
+                <a href="#schedule">TIMELINE</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section (1:1 Poster Match) -->
+    <section id="hero" class="hero-section">
+        <div class="container hero-layout">
+            
+            <!-- Top Status Bar: Days Count & SCI Badge -->
+            <div class="hero-header-bar animate-fade-in">
+                <div class="terminal-days-badge">
+                    <span id="hero-days-count">--</span> DAYS TO CODE ARENA
+                </div>
+                <div class="sci-badge">SCI</div>
+            </div>
+
+            <!-- Main Title Lockup (Code Arena Inter Gradient + Layered >_ EXPO) -->
+            <div class="title-wrapper animate-fade-in delay-1">
+                <h1 class="main-title">
+                    <span class="title-code">CODE</span>
+                    <span class="title-arena">ARENA</span>
+                </h1>
+                <div class="expo-line">
+                    <div class="prompt-caret-stack">
+                        <span class="prompt-caret">&gt;</span>
+                        <span class="prompt-dash"></span>
+                    </div>
+                    <span class="title-expo">EXPO</span>
+                </div>
+            </div>
+
+            <!-- Tagline -->
+            <p class="hero-tagline animate-fade-in delay-2">
+                AIU's biggest coding showdown and tech showcase is almost here &gt;_ a full day of elimination-round competitive programming, live leaderboards, 3ZERO Club showcases, and student-run food stalls, all under one roof.
+            </p>
+
+            <!-- Hazard Caution Bar -->
+            <div class="hazard-strip animate-fade-in delay-3"></div>
+
+            <!-- Coming Soon Central Cyber Block -->
+            <div class="coming-soon-block animate-fade-in delay-3">
+                <svg class="coming-soon-chevron" viewBox="0 0 400 600" fill="none" aria-hidden="true">
+                    <path d="M40 40 L310 300 L40 560" stroke="currentColor" stroke-width="26" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="coming-soon-text">Coming Soon</span>
+            </div>
+
+            <!-- Hazard Caution Bar Bottom -->
+            <div class="hazard-strip animate-fade-in delay-3"></div>
+
+            <!-- Bottom Terminal Motto Strip -->
+            <div class="hero-motto-strip animate-fade-in delay-4">
+                &gt;_ Challenge &bull; Code &bull; Conquer
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Tournament Bracket Section -->
+    <section id="structure" class="section">
+        <div class="container">
+            <div class="section-title-wrap">
+                <span class="terminal-prefix">&gt;_</span>
+                <h2 class="section-title">TOURNAMENT BRACKET</h2>
+            </div>
+            <div class="bracket-grid">
+                <!-- Round 1 -->
+                <div class="round-card">
+                    <div class="round-badge">RND 01 | 60 MIN</div>
+                    <h3 class="round-title">QUALIFIERS</h3>
+                    <p class="round-desc">3 to 5 algorithmic challenges focusing on array manipulation, string parsing, and conditional logic.</p>
+                    <div class="round-cutoff cut-danger">BOTTOM 50% TERMINATED</div>
+                </div>
+                <!-- Round 2 -->
+                <div class="round-card">
+                    <div class="round-badge">RND 02 | 90 MIN</div>
+                    <h3 class="round-title">SEMI-FINALS</h3>
+                    <p class="round-desc">2 to 3 medium-to-hard challenges covering custom sorting, basic dynamic programming, and data optimization.</p>
+                    <div class="round-cutoff cut-warning">TOP 10 TEAMS ADVANCE</div>
+                </div>
+                <!-- Round 3 -->
+                <div class="round-card">
+                    <div class="round-badge">RND 03 | 60 MIN</div>
+                    <h3 class="round-title">THE FINALS</h3>
+                    <p class="round-desc">1 to 2 highly complex, multi-step optimization problems requiring robust algorithmic execution.</p>
+                    <div class="round-cutoff cut-success">CHAMPION CROWNED</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Awards / Spoils of War Section -->
+    <section id="awards" class="section">
+        <div class="container">
+            <div class="section-title-wrap">
+                <span class="terminal-prefix">&gt;_</span>
+                <h2 class="section-title">SPOILS OF WAR</h2>
+            </div>
+            <div class="awards-table-wrapper">
+                <table class="cyber-table">
+                    <thead>
+                        <tr>
+                            <th>RANK</th>
+                            <th>PRIZE (ESTIMATE)</th>
+                            <th>RECOGNITION</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="rank-cell">1ST PLACE</td>
+                            <td class="prize-cell"><span class="cypher-text" data-target="RM 1000">RM ****</span></td>
+                            <td>Medal + Special Certificate + Cash Prize</td>
+                        </tr>
+                        <tr>
+                            <td class="rank-cell">2ND PLACE</td>
+                            <td class="prize-cell"><span class="cypher-text" data-target="RM 600">RM ***</span></td>
+                            <td>Medal + Special Certificate + Cash Prize</td>
+                        </tr>
+                        <tr>
+                            <td class="rank-cell">3RD PLACE</td>
+                            <td class="prize-cell"><span class="cypher-text" data-target="RM 400">RM ***</span></td>
+                            <td>Medal + Special Certificate + Cash Prize</td>
+                        </tr>
+                        <tr>
+                            <td class="rank-cell">4TH PLACE</td>
+                            <td class="prize-cell"><span class="cypher-text" data-target="RM 250">RM ***</span></td>
+                            <td>Medal + Special Certificate + Cash Prize</td>
+                        </tr>
+                        <tr>
+                            <td class="rank-cell">5TH PLACE</td>
+                            <td class="prize-cell"><span class="cypher-text" data-target="RM 150">RM ***</span></td>
+                            <td>Medal + Special Certificate + Cash Prize</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="table-note">&gt;_ Prize values are being finalized in committee review. Every participating member receives an official Certificate of Achievement.</p>
+        </div>
+    </section>
+
+    <!-- Schedule Timeline Section -->
+    <section id="schedule" class="section">
+        <div class="container">
+            <div class="section-title-wrap">
+                <span class="terminal-prefix">&gt;_</span>
+                <h2 class="section-title">OPERATIONAL SCHEDULE</h2>
+            </div>
+            <ul class="timeline-list">
+                <li class="timeline-item">
+                    <span class="time-stamp">09:00 AM</span>
+                    <span class="time-desc">Registration Check-In & Station Assignment</span>
+                </li>
+                <li class="timeline-item">
+                    <span class="time-stamp">09:30 AM</span>
+                    <span class="time-desc">Opening Ceremony & Rulebook Briefing</span>
+                </li>
+                <li class="timeline-item">
+                    <span class="time-stamp">10:00 AM</span>
+                    <span class="time-desc">Round 1: Qualifiers (60 Min)</span>
+                </li>
+                <li class="timeline-item">
+                    <span class="time-stamp">11:15 AM</span>
+                    <span class="time-desc">Round 2: Semi-Finals (90 Min)</span>
+                </li>
+                <li class="timeline-item">
+                    <span class="time-stamp">01:00 PM</span>
+                    <span class="time-desc">Lunch Break & Expo Showcase Opens</span>
+                </li>
+                <li class="timeline-item">
+                    <span class="time-stamp">01:45 PM</span>
+                    <span class="time-desc">Round 3: The Finals (60 Min)</span>
+                </li>
+                <li class="timeline-item">
+                    <span class="time-stamp">03:00 PM</span>
+                    <span class="time-desc">Award Ceremony & Official Recognition</span>
+                </li>
+                <li class="timeline-item">
+                    <span class="time-stamp">05:00 PM</span>
+                    <span class="time-desc">Closing Remarks & Concourse Wrap-Up</span>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <p class="quote-text">"Inspiring Minds"</p>
+            <div class="values-bar">
+                <span>AKIDAH</span><span class="dot">&bull;</span>
+                <span>AKHLAK</span><span class="dot">&bull;</span>
+                <span>ADAB</span><span class="dot">&bull;</span>
+                <span>AMANAH</span><span class="dot">&bull;</span>
+                <span>AMALAN</span>
+            </div>
+            <p class="copyright-text">&copy; 2026 School of Computing and Informatics (SCI) Committee. Albukhary International University.</p>
+        </div>
+    </footer>
+
+    <!-- Vanilla JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>

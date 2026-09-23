@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Arena & Expo 2026 | SCI AIU</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&family=JetBrains+Mono:wght@400;600;700&family=Playfair+Display:ital,wght@1,600;1,700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="grid-background"></div>
+    <div class="scanline"></div>
+
+    <!-- Navigation Header -->
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="logo-group">
+                <a href="#" class="logo-link" aria-label="Albukhary International University Home">
+                    <img src="aiu-logo.png" alt="AIU Logo" class="brand-logo logo-aiu">
+                </a>
+                <span class="logo-divider" aria-hidden="true"></span>
+                <a href="#" class="logo-link" aria-label="School of Computing and Informatics">
+                    <img src="sci-logo.png" alt="SCI Logo" class="brand-logo logo-sci">
+                </a>
+            </div>
+            
+            <nav class="nav-links">
+                <a href="#overview">OVERVIEW</a>
+                <a href="#structure">STRUCTURE</a>
+                <a href="#awards">AWARDS</a>
+                <a href="#expo">EXPO</a>
+                <a href="#schedule">SCHEDULE</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="hero-section">
+            <div class="container hero-layout">
+                <div class="hero-header-bar">
+                    <span class="terminal-tag">>_ STAY TUNED</span>
+                    <div class="status-indicator">
+                        <span class="pulse-dot"></span>
+                        <span>REGISTRATION LAUNCHING</span>
+                    </div>
+                </div>
+
+                <div class="title-wrapper">
+                    <h1 class="main-title">
+                        <span class="title-code">CODE</span>
+                        <span class="title-arena">ARENA</span>
+                    </h1>
+                    <div class="expo-line">
+                        <span class="prompt-symbol">>_</span>
+                        <span class="title-expo">EXPO</span>
+                    </div>
+                </div>
+
+                <p class="hero-tagline">
+                    AIU's flagship coding showdown and tech showcase. A full day of elimination-round competitive programming, live auditorium leaderboards, 3ZERO Club project displays, and student-run food stalls, all under one roof.
+                </p>
+
+                <!-- Live Countdown -->
+                <div class="countdown-container">
+                    <div class="countdown-title">>_ COUNTDOWN TO LAUNCH</div>
+                    <div class="countdown-timer" id="countdown">
+                        <div class="timer-unit">
+                            <span class="timer-num" id="days">00</span>
+                            <span class="timer-label">DAYS</span>
+                        </div>
+                        <span class="timer-colon">:</span>
+                        <div class="timer-unit">
+                            <span class="timer-num" id="hours">00</span>
+                            <span class="timer-label">HOURS</span>
+                        </div>
+                        <span class="timer-colon">:</span>
+                        <div class="timer-unit">
+                            <span class="timer-num" id="minutes">00</span>
+                            <span class="timer-label">MIN</span>
+                        </div>
+                        <span class="timer-colon">:</span>
+                        <div class="timer-unit">
+                            <span class="timer-num" id="seconds">00</span>
+                            <span class="timer-label">SEC</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Cards: Date & QR -->
+                <div class="action-grid">
+                    <div class="terminal-card">
+                        <div class="card-header">
+                            <span class="card-title">EVENT DATE & VENUE</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="meta-row">
+                                <svg class="icon-svg meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                                </svg>
+                                <div>
+                                    <div class="meta-main">22nd October 2026</div>
+                                    <div class="meta-sub">9:00 AM to 5:00 PM</div>
+                                </div>
+                            </div>
+                            <div class="meta-row">
+                                <svg class="icon-svg meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                    <circle cx="12" cy="10" r="3"></circle>
+                                </svg>
+                                <div>
+                                    <div class="meta-main">AIU Auditorium & Labs</div>
+                                    <div class="meta-sub">SBSS Computer Labs (Level 2)</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="terminal-card qr-card">
+                        <div class="card-header">
+                            <span class="card-title">REGISTRATION HUBS</span>
+                        </div>
+                        <div class="card-body qr-body">
+                            <div class="qr-placeholder" title="QR Code Placeholder">
+                                <svg class="icon-svg qr-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <rect x="3" y="3" width="7" height="7"></rect>
+                                    <rect x="14" y="3" width="7" height="7"></rect>
+                                    <rect x="3" y="14" width="7" height="7"></rect>
+                                    <rect x="14" y="14" width="3" height="3"></rect>
+                                    <line x1="17" y1="17" x2="21" y2="17"></line>
+                                    <line x1="17" y1="21" x2="21" y2="21"></line>
+                                </svg>
+                                <span class="qr-text">>_ SCAN TO ACCESS</span>
+                            </div>
+                            <div class="btn-group">
+                                <a href="#arena-reg" class="btn btn-primary">
+                                    <span>CODE ARENA FORM</span>
+                                    <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polyline points="9 18 15 12 9 6"></polyline>
+                                    </svg>
+                                </a>
+                                <a href="#expo-reg" class="btn btn-secondary">
+                                    <span>EXPO STALL FORM</span>
+                                    <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polyline points="9 18 15 12 9 6"></polyline>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hazard Banner Strip -->
+                <div class="hazard-strip"></div>
+            </div>
+        </section>
+
+        <!-- Overview Section -->
+        <section id="overview" class="section">
+            <div class="container">
+                <div class="section-title-wrap">
+                    <span class="terminal-prefix">>_</span>
+                    <h2 class="section-title">MISSION OVERVIEW</h2>
+                </div>
+                <div class="terminal-card">
+                    <div class="card-body">
+                        <p class="lead-text">
+                            Code Arena & Expo 2026 is organized by the School of Computing and Informatics (SCI) Committee 2025/2026 at Albukhary International University. Designed as a high-stakes, elimination-style tournament, it challenges programmers across Python, C, and Java in progressive difficulty brackets, while transforming the campus into an active innovation expo with live auditorium feeds.
+                        </p>
+                        <div class="stats-grid">
+                            <div class="stat-box">
+                                <div class="stat-num">3</div>
+                                <div class="stat-label">MEMBERS PER TEAM</div>
+                            </div>
+                            <div class="stat-box">
+                                <div class="stat-num">3</div>
+                                <div class="stat-label">ELIMINATION ROUNDS</div>
+                            </div>
+                            <div class="stat-box">
+                                <div class="stat-num">40</div>
+                                <div class="stat-label">MAX TEAM CAPACITY</div>
+                            </div>
+                            <div class="stat-box">
+                                <div class="stat-num">100%</div>
+                                <div class="stat-label">LIVE BROADCAST</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Structure Section -->
+        <section id="structure" class="section">
+            <div class="container">
+                <div class="section-title-wrap">
+                    <span class="terminal-prefix">>_</span>
+                    <h2 class="section-title">TOURNAMENT BRACKET</h2>
+                </div>
+
+                <div class="bracket-grid">
+                    <!-- Round 1 -->
+                    <div class="round-card">
+                        <div class="round-badge">RND 01 | 60 MIN</div>
+                        <h3 class="round-title">QUALIFIERS</h3>
+                        <p class="round-desc">3 to 5 algorithmic challenges focusing on array manipulation, string parsing, and conditional logic.</p>
+                        <div class="round-cutoff cut-danger">BOTTOM 50% TERMINATED</div>
+                    </div>
+
+                    <!-- Round 2 -->
+                    <div class="round-card">
+                        <div class="round-badge">RND 02 | 90 MIN</div>
+                        <h3 class="round-title">SEMI-FINALS</h3>
+                        <p class="round-desc">2 to 3 medium-to-hard challenges covering custom sorting, basic dynamic programming, and data optimization.</p>
+                        <div class="round-cutoff cut-warning">TOP 10 TEAMS ADVANCE</div>
+                    </div>
+
+                    <!-- Round 3 -->
+                    <div class="round-card">
+                        <div class="round-badge">RND 03 | 60 MIN</div>
+                        <h3 class="round-title">THE FINALS</h3>
+                        <p class="round-desc">1 to 2 highly complex, multi-step optimization problems requiring robust algorithmic execution.</p>
+                        <div class="round-cutoff cut-success">CHAMPION CROWNED</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Awards Section -->
+        <section id="awards" class="section">
+            <div class="container">
+                <div class="section-title-wrap">
+                    <span class="terminal-prefix">>_</span>
+                    <h2 class="section-title">SPOILS OF WAR</h2>
+                </div>
+
+                <div class="terminal-card">
+                    <div class="card-header">
+                        <span class="card-title">PRIZE POOL BREAKDOWN</span>
+                        <span class="status-badge">CYPHER LOCKED</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="awards-table-wrapper">
+                            <table class="cyber-table">
+                                <thead>
+                                    <tr>
+                                        <th>RANK</th>
+                                        <th>PRIZE (ESTIMATE)</th>
+                                        <th>RECOGNITION</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="rank-cell">1ST PLACE</td>
+                                        <td class="prize-cell cypher-text" data-target="RM 1,000">RM ****</td>
+                                        <td>Medal + Special Certificate + Cash Prize</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="rank-cell">2ND PLACE</td>
+                                        <td class="prize-cell cypher-text" data-target="RM 750">RM ***</td>
+                                        <td>Medal + Special Certificate + Cash Prize</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="rank-cell">3RD PLACE</td>
+                                        <td class="prize-cell cypher-text" data-target="RM 500">RM ***</td>
+                                        <td>Medal + Special Certificate + Cash Prize</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="rank-cell">4TH PLACE</td>
+                                        <td class="prize-cell cypher-text" data-target="RM 300">RM ***</td>
+                                        <td>Medal + Special Certificate + Cash Prize</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="rank-cell">5TH PLACE</td>
+                                        <td class="prize-cell cypher-text" data-target="RM 150">RM ***</td>
+                                        <td>Medal + Special Certificate + Cash Prize</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p class="table-note">>_ Prize values are being finalized in committee review. Every participating member receives an official Certificate of Achievement.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Expo Section -->
+        <section id="expo" class="section">
+            <div class="container">
+                <div class="section-title-wrap">
+                    <span class="terminal-prefix">>_</span>
+                    <h2 class="section-title">THE EXPO SHOWCASE</h2>
+                </div>
+
+                <div class="expo-grid">
+                    <div class="terminal-card">
+                        <div class="card-header">
+                            <span class="card-title">3ZERO CLUBS SHOWCASE</span>
+                        </div>
+                        <div class="card-body">
+                            <p>All 3ZERO Clubs under SCI are invited to demonstrate their active initiatives, social enterprise ventures, and technological prototypes to the wider university community and visiting delegates.</p>
+                        </div>
+                    </div>
+
+                    <div class="terminal-card">
+                        <div class="card-header">
+                            <span class="card-title">STUDENT ENTREPRENEUR STALLS</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Open registration for student-run food, beverage, and tech merchandise mini-stalls. Fuel attendees, network with peers, and operate directly on the auditorium concourse throughout the day.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Schedule Section -->
+        <section id="schedule" class="section">
+            <div class="container">
+                <div class="section-title-wrap">
+                    <span class="terminal-prefix">>_</span>
+                    <h2 class="section-title">OPERATIONAL SCHEDULE</h2>
+                </div>
+
+                <div class="terminal-card">
+                    <div class="card-body">
+                        <ul class="timeline-list">
+                            <li class="timeline-item">
+                                <span class="time-stamp">09:00 AM</span>
+                                <span class="time-desc">Registration Check-In & Station Assignment</span>
+                            </li>
+                            <li class="timeline-item">
+                                <span class="time-stamp">09:30 AM</span>
+                                <span class="time-desc">Opening Ceremony & Rulebook Briefing</span>
+                            </li>
+                            <li class="timeline-item">
+                                <span class="time-stamp">10:00 AM</span>
+                                <span class="time-desc">Round 1: Qualifiers (60 Min)</span>
+                            </li>
+                            <li class="timeline-item">
+                                <span class="time-stamp">11:15 AM</span>
+                                <span class="time-desc">Round 2: Semi-Finals (90 Min)</span>
+                            </li>
+                            <li class="timeline-item">
+                                <span class="time-stamp">01:00 PM</span>
+                                <span class="time-desc">Lunch Break & Expo Showcase Opens</span>
+                            </li>
+                            <li class="timeline-item">
+                                <span class="time-stamp">01:45 PM</span>
+                                <span class="time-desc">Round 3: The Finals (60 Min)</span>
+                            </li>
+                            <li class="timeline-item">
+                                <span class="time-stamp">03:00 PM</span>
+                                <span class="time-desc">Award Ceremony & Official Recognition</span>
+                            </li>
+                            <li class="timeline-item">
+                                <span class="time-stamp">05:00 PM</span>
+                                <span class="time-desc">Closing Remarks & Concourse Wrap-Up</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="quote-wrapper">
+                <a href="#" class="footer-link" aria-label="Inspiring Minds">
+                    <img src="inspiring-minds.png" alt="Inspiring Minds Logo" class="brand-footer inspiring-minds">
+                </a>
+                <!-- <span class="quote-text">"inspiring minds"</span> -->
+            </div>
+            <div class="values-bar">
+                <span>AKIDAH</span>
+                <span class="dot">•</span>
+                <span>AKHLAK</span>
+                <span class="dot">•</span>
+                <span>ADAB</span>
+                <span class="dot">•</span>
+                <span>AMANAH</span>
+                <span class="dot">•</span>
+                <span>AMALAN</span>
+            </div>
+            <div class="copyright-text">
+                School of Computing & Informatics Committee 2025/2026. Albukhary International University.
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
