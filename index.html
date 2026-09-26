@@ -10,19 +10,29 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&family=JetBrains+Mono:wght@400;600;700&family=Playfair+Display:ital,wght@1,600;1,700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div class="global-canvas">
+      <svg class="bg-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <!-- The Chevron (>) -->
+        <polyline points="6 18 12 12 6 6"></polyline>
+        <!-- The Underscore (_) -->
+        <line x1="14" y1="18" x2="20" y2="18"></line>
+      </svg>    
+    </div>
     <div class="grid-background"></div>
     <div class="scanline"></div>
 
-    <!-- Navigation Header -->
+    <!-- Navigation Header with Mobile Horizontal Scroll Links & Responsive Logos -->
     <header class="navbar">
         <div class="nav-container">
             <div class="logo-group">
-                <a href="#" class="logo-link" aria-label="Albukhary International University Home">
-                    <img src="aiu-logo.png" alt="AIU Logo" class="brand-logo logo-aiu">
+                <!-- AIU Logo Link -->
+                <a href="https://aiu.edu.my" target="_blank" rel="noopener noreferrer" class="logo-link">
+                    <img src="assets/aiu-logo.png" alt="AIU Logo" class="brand-logo" onerror="this.style.display='none'">
                 </a>
-                <span class="logo-divider" aria-hidden="true"></span>
-                <a href="#" class="logo-link" aria-label="School of Computing and Informatics">
-                    <img src="sci-logo.png" alt="SCI Logo" class="brand-logo logo-sci">
+                <div class="logo-divider"></div>
+                <!-- SCI Logo Link -->
+                <a href="#hero" class="logo-link">
+                    <img src="assets/sci-logo.png" alt="SCI Logo" class="brand-logo" onerror="this.style.display='none'">
                 </a>
             </div>
             
@@ -44,7 +54,7 @@
                     <span class="terminal-tag">>_ STAY TUNED</span>
                     <div class="status-indicator">
                         <span class="pulse-dot"></span>
-                        <span>REGISTRATION LAUNCHING</span>
+                        <span>REGISTRATION OPEN</span>
                     </div>
                 </div>
 
@@ -89,8 +99,9 @@
                     </div>
                 </div>
 
-                <!-- Action Cards: Date & QR -->
+                <!-- Action Cards: Event Details & Dual Registration Hub -->
                 <div class="action-grid">
+                    <!-- Date & Location Card -->
                     <div class="terminal-card">
                         <div class="card-header">
                             <span class="card-title">EVENT DATE & VENUE</span>
@@ -114,42 +125,70 @@
                                     <circle cx="12" cy="10" r="3"></circle>
                                 </svg>
                                 <div>
-                                    <div class="meta-main">AIU Auditorium & Labs</div>
+                                    <div class="meta-main">AIU Auditorium & Computer Labs</div>
                                     <div class="meta-sub">SBSS Computer Labs (Level 2)</div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
+                    <!-- Dual Registration Hub: Two Distinct QR Slots + Action Buttons -->
                     <div class="terminal-card qr-card">
                         <div class="card-header">
                             <span class="card-title">REGISTRATION HUBS</span>
+                            <span class="status-badge live-badge">OFFICIAL LINKS</span>
                         </div>
                         <div class="card-body qr-body">
-                            <div class="qr-placeholder" title="QR Code Placeholder">
-                                <svg class="icon-svg qr-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                    <rect x="3" y="3" width="7" height="7"></rect>
-                                    <rect x="14" y="3" width="7" height="7"></rect>
-                                    <rect x="3" y="14" width="7" height="7"></rect>
-                                    <rect x="14" y="14" width="3" height="3"></rect>
-                                    <line x1="17" y1="17" x2="21" y2="17"></line>
-                                    <line x1="17" y1="21" x2="21" y2="21"></line>
-                                </svg>
-                                <span class="qr-text">>_ SCAN TO ACCESS</span>
-                            </div>
-                            <div class="btn-group">
-                                <a href="#arena-reg" class="btn btn-primary">
-                                    <span>CODE ARENA FORM</span>
-                                    <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <polyline points="9 18 15 12 9 6"></polyline>
-                                    </svg>
-                                </a>
-                                <a href="#expo-reg" class="btn btn-secondary">
-                                    <span>EXPO STALL FORM</span>
-                                    <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <polyline points="9 18 15 12 9 6"></polyline>
-                                    </svg>
-                                </a>
+                            <div class="dual-qr-container">
+                                <!-- Hub 1: Code Arena -->
+                                <div class="qr-box">
+                                    <div class="qr-frame">
+                                        <img src="assets/qr-code-arena.png" alt="Code Arena Registration QR" class="qr-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                                        <div class="qr-fallback">
+                                            <svg class="icon-svg qr-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                                <rect x="3" y="3" width="7" height="7"></rect>
+                                                <rect x="14" y="3" width="7" height="7"></rect>
+                                                <rect x="3" y="14" width="7" height="7"></rect>
+                                                <rect x="14" y="14" width="3" height="3"></rect>
+                                                <line x1="17" y1="17" x2="21" y2="17"></line>
+                                                <line x1="17" y1="21" x2="21" y2="21"></line>
+                                            </svg>
+                                            <span>QR PLACEHOLDER</span>
+                                        </div>
+                                    </div>
+                                    <span class="qr-label">CODE ARENA</span>
+                                    <a href="<!-- INSERT_CODE_ARENA_FORM_LINK_HERE -->" target="_blank" rel="noopener noreferrer" class="btn btn-primary qr-btn">
+                                        <span>REGISTER TEAM</span>
+                                        <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <polyline points="9 18 15 12 9 6"></polyline>
+                                        </svg>
+                                    </a>
+                                </div>
+
+                                <!-- Hub 2: Expo Showcase & Stalls -->
+                                <div class="qr-box">
+                                    <div class="qr-frame">
+                                        <img src="assets/qr-expo.png" alt="Expo Showcase Registration QR" class="qr-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                                        <div class="qr-fallback">
+                                            <svg class="icon-svg qr-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                                <rect x="3" y="3" width="7" height="7"></rect>
+                                                <rect x="14" y="3" width="7" height="7"></rect>
+                                                <rect x="3" y="14" width="7" height="7"></rect>
+                                                <rect x="14" y="14" width="3" height="3"></rect>
+                                                <line x1="17" y1="17" x2="21" y2="17"></line>
+                                                <line x1="17" y1="21" x2="21" y2="21"></line>
+                                            </svg>
+                                            <span>QR PLACEHOLDER</span>
+                                        </div>
+                                    </div>
+                                    <span class="qr-label">EXPO & STALLS</span>
+                                    <a href="<!-- INSERT_EXPO_FORM_LINK_HERE -->" target="_blank" rel="noopener noreferrer" class="btn btn-secondary qr-btn">
+                                        <span>EXPO SIGN-UP</span>
+                                        <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <polyline points="9 18 15 12 9 6"></polyline>
+                                        </svg>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -242,7 +281,7 @@
                 <div class="terminal-card">
                     <div class="card-header">
                         <span class="card-title">PRIZE POOL BREAKDOWN</span>
-                        <span class="status-badge">CYPHER LOCKED</span>
+                        <span class="status-badge prize-badge">RM 2,500 TOTAL CASH</span>
                     </div>
                     <div class="card-body">
                         <div class="awards-table-wrapper">
@@ -250,40 +289,35 @@
                                 <thead>
                                     <tr>
                                         <th>RANK</th>
-                                        <th>PRIZE (ESTIMATE)</th>
+                                        <th>CASH PRIZE</th>
                                         <th>RECOGNITION</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td class="rank-cell">1ST PLACE</td>
-                                        <td class="prize-cell cypher-text" data-target="RM 1,000">RM ****</td>
+                                        <td class="prize-cell cypher-text" data-target="RM 1,000">RM 1,000</td>
                                         <td>Medal + Special Certificate + Cash Prize</td>
                                     </tr>
                                     <tr>
                                         <td class="rank-cell">2ND PLACE</td>
-                                        <td class="prize-cell cypher-text" data-target="RM 750">RM ***</td>
+                                        <td class="prize-cell cypher-text" data-target="RM 750">RM 750</td>
                                         <td>Medal + Special Certificate + Cash Prize</td>
                                     </tr>
                                     <tr>
                                         <td class="rank-cell">3RD PLACE</td>
-                                        <td class="prize-cell cypher-text" data-target="RM 500">RM ***</td>
+                                        <td class="prize-cell cypher-text" data-target="RM 500">RM 500</td>
                                         <td>Medal + Special Certificate + Cash Prize</td>
                                     </tr>
                                     <tr>
                                         <td class="rank-cell">4TH PLACE</td>
-                                        <td class="prize-cell cypher-text" data-target="RM 300">RM ***</td>
-                                        <td>Medal + Special Certificate + Cash Prize</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="rank-cell">5TH PLACE</td>
-                                        <td class="prize-cell cypher-text" data-target="RM 150">RM ***</td>
+                                        <td class="prize-cell cypher-text" data-target="RM 250">RM 250</td>
                                         <td>Medal + Special Certificate + Cash Prize</td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
-                        <p class="table-note">>_ Prize values are being finalized in committee review. Every participating member receives an official Certificate of Achievement.</p>
+                        <p class="table-note">>_ Cash prizes distributed per team. Every participating team member receives an official Certificate of Achievement.</p>
                     </div>
                 </div>
             </div>
@@ -336,27 +370,39 @@
                             </li>
                             <li class="timeline-item">
                                 <span class="time-stamp">09:30 AM</span>
-                                <span class="time-desc">Opening Ceremony & Rulebook Briefing</span>
+                                <span class="time-desc">Opening Ceremony: Welcome Remarks & Rulebook Briefing</span>
                             </li>
                             <li class="timeline-item">
                                 <span class="time-stamp">10:00 AM</span>
-                                <span class="time-desc">Round 1: Qualifiers (60 Min)</span>
+                                <span class="time-desc">Round 1: Qualifiers (60 Min): Algorithmic Challenges</span>
                             </li>
                             <li class="timeline-item">
-                                <span class="time-stamp">11:15 AM</span>
-                                <span class="time-desc">Round 2: Semi-Finals (90 Min)</span>
+                                <span class="time-stamp">11:00 AM</span>
+                                <span class="time-desc">Round 1 Results & Technical Lab Reconfiguration (30 Min Break)</span>
+                            </li>
+                            <li class="timeline-item">
+                                <span class="time-stamp">11:30 AM</span>
+                                <span class="time-desc">Round 2: Semi-Finals (90 Min): Optimization Challenges</span>
                             </li>
                             <li class="timeline-item">
                                 <span class="time-stamp">01:00 PM</span>
-                                <span class="time-desc">Lunch Break & Expo Showcase Opens</span>
+                                <span class="time-desc">Round 2 Results, Top 10 Teams Announced & Lunch Break (Expo Opens)</span>
                             </li>
                             <li class="timeline-item">
                                 <span class="time-stamp">01:45 PM</span>
-                                <span class="time-desc">Round 3: The Finals (60 Min)</span>
+                                <span class="time-desc">Round 3: The Finals (60 Min): Complex Multi-Step Problems</span>
+                            </li>
+                            <li class="timeline-item">
+                                <span class="time-stamp">02:45 PM</span>
+                                <span class="time-desc">Finals Results Verification & Champion Announcement</span>
                             </li>
                             <li class="timeline-item">
                                 <span class="time-stamp">03:00 PM</span>
-                                <span class="time-desc">Award Ceremony & Official Recognition</span>
+                                <span class="time-desc">Award Ceremony: Medals, Cash Prizes & Certificates Presentation</span>
+                            </li>
+                            <li class="timeline-item">
+                                <span class="time-stamp">03:30 PM</span>
+                                <span class="time-desc">Expo Showcase Continues: Open to All Attendees</span>
                             </li>
                             <li class="timeline-item">
                                 <span class="time-stamp">05:00 PM</span>
@@ -372,11 +418,8 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container footer-content">
-            <div class="quote-wrapper">
-                <a href="#" class="footer-link" aria-label="Inspiring Minds">
-                    <img src="inspiring-minds.png" alt="Inspiring Minds Logo" class="brand-footer inspiring-minds">
-                </a>
-                <!-- <span class="quote-text">"inspiring minds"</span> -->
+            <div class="brand-footer-wrap">
+                <img src="assets/aiu-full-logo.png" alt="Albukhary International University" class="brand-footer" onerror="this.style.display='none'">
             </div>
             <div class="values-bar">
                 <span>AKIDAH</span>
@@ -398,3 +441,540 @@
     <script src="script.js"></script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
