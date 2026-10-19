@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Arena 2026 | Stage Broadcast & Control Engine</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&family=JetBrains+Mono:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Minimal Header Bar -->
+    <header class="stage-header">
+        <div class="brand-zone">
+            <span class="terminal-prompt">>_</span>
+            <span class="event-title">CODE ARENA 2026</span>
+            <div class="badge-live">
+                <span class="live-pulse"></span>
+                <span>AUDITORIUM ENGINE</span>
+            </div>
+        </div>
+
+        <!-- Quick Slim Control Ribbon -->
+        <div class="quick-ribbon">
+            <div class="slider-group">
+                <label for="gridSizeRange">GRID SCALE</label>
+                <input type="range" id="gridSizeRange" min="200" max="650" value="340" step="10">
+                <span id="gridScaleLabel">340px</span>
+            </div>
+
+            <div class="slider-group">
+                <label for="scrollSpeedRange">SCROLL SPEED</label>
+                <input type="range" id="scrollSpeedRange" min="0" max="5" value="1.5" step="0.5">
+                <span id="scrollSpeedLabel">1.5x</span>
+            </div>
+
+            <button class="btn-action btn-danger" id="blackoutBtn" onclick="toggleBlackout()">
+                TRIGGER BLIND FINISH
+            </button>
+
+            <button class="btn-action btn-icon" id="settingsToggleBtn" onclick="toggleSettingsDrawer()" title="Settings & Room Config">
+                ⚙️ CONFIG
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Resizable Stage Work Area -->
+    <main class="stage-container" id="stageContainer">
+
+        <!-- Left: Dynamic Workstation Screen Grid -->
+        <section class="grid-viewport" id="gridViewport">
+            <div class="stations-grid" id="stationsGrid">
+                <!-- Dynamically populated via js/engine.js -->
+            </div>
+        </section>
+
+        <!-- Drag Resizer Bar -->
+        <div class="pane-resizer" id="paneResizer" title="Drag left/right to resize leaderboard view">
+            <div class="resizer-knob"></div>
+        </div>
+
+        <!-- Right: Real-time Leaderboard Stream -->
+        <aside class="leaderboard-viewport" id="leaderboardViewport">
+            <div class="lb-header">
+                <div class="lb-title">
+                    <span class="terminal-prompt">>_</span>
+                    <span>LIVE STANDINGS</span>
+                </div>
+                <div class="lb-actions">
+                    <button class="btn-tiny" onclick="reloadLeaderboard()" title="Reload Leaderboard Frame">🔄 REFRESH</button>
+                    <button class="btn-tiny" onclick="toggleLeaderboardCollapse()" title="Collapse Leaderboard">✕</button>
+                </div>
+            </div>
+
+            <div class="lb-frame-wrapper" id="lbWrapper">
+                <iframe id="leaderboardIframe" class="lb-iframe" src="https://www.hackerrank.com/contests/code-arena-2026-simulation-2-qualifiers/leaderboard"></iframe>
+            </div>
+        </aside>
+    </main>
+
+    <!-- Collapsible Settings & Director Drawer -->
+    <div class="settings-drawer" id="settingsDrawer">
+        <div class="drawer-header">
+            <h3>STAGE CONTROL & DIRECTOR SETTINGS</h3>
+            <button class="btn-close" onclick="toggleSettingsDrawer()">✕</button>
+        </div>
+        <div class="drawer-body">
+
+            <div class="form-group">
+                <label for="cfgContestSlug">HACKERRANK CONTEST SLUG</label>
+                <input type="text" id="cfgContestSlug" value="code-arena-2026-simulation-2-qualifiers" placeholder="e.g. code-arena-2026-finals">
+                <small>Updates live leaderboard target URL immediately.</small>
+            </div>
+
+            <div class="form-group">
+                <label for="cfgTotalStations">ACTIVE STATIONS COUNT (1 - 40)</label>
+                <input type="number" id="cfgTotalStations" min="1" max="50" value="12">
+            </div>
+
+            <div class="form-group">
+                <label for="cfgStreamPrefix">STATION PUSH PREFIX</label>
+                <input type="text" id="cfgStreamPrefix" value="Team" placeholder="e.g. Team or PC">
+                <small>Stream IDs will map to: Team01, Team02, ...</small>
+            </div>
+
+            <div class="form-group">
+                <label>QUICK PRESETS</label>
+                <div class="preset-buttons">
+                    <button class="btn-preset" onclick="applyPreset(12)">12 Teams</button>
+                    <button class="btn-preset" onclick="applyPreset(24)">24 Teams</button>
+                    <button class="btn-preset" onclick="applyPreset(32)">32 Teams</button>
+                </div>
+            </div>
+
+            <div class="drawer-footer">
+                <button class="btn-action btn-mint" onclick="saveAndApplySettings()">APPLY & REBUILD MATRIX</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fullscreen Focus Modal (Spotlight a Single PC) -->
+    <div class="spotlight-modal" id="spotlightModal">
+        <div class="spotlight-header">
+            <span id="spotlightTitle">>_ SPOTLIGHT STREAM: TEAM01</span>
+            <button class="btn-close" onclick="closeSpotlight()">✕ CLOSE FOCUS (ESC)</button>
+        </div>
+        <div class="spotlight-body" id="spotlightBody">
+            <!-- Focused Iframe mounts here -->
+        </div>
+    </div>
+
+    <script src="js/engine.js"></script>
+</body>
+</html>
