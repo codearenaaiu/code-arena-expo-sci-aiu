@@ -1,23 +1,25 @@
-/* ==========================================================================
-   CODE ARENA 2026 - STAGE BROADCAST ENGINE JAVASCRIPT
-   ========================================================================== */
-
-// --- Default Configuration State ---
 let config = {
-    totalStations: 12,
+    totalStations: 33,
     streamPrefix: "Team",
-    contestSlug: "code-arena-2026-simulation-2-qualifiers",
+    contestSlug: "code-arena-sim-3-qualifiers",
     gridScale: 340,
     scrollSpeed: 1.5,
-    isBlackout: false
+    isBlackout: false,
+    apiBase: "http://localhost:8080"
 };
 
-// --- DOM References ---
+let latestLeaderboardModels = [];
+let scrollInterval = null;
+let scrollDirection = 1;
+
 const stationsGrid = document.getElementById('stationsGrid');
 const gridViewport = document.getElementById('gridViewport');
 const paneResizer = document.getElementById('paneResizer');
 const leaderboardViewport = document.getElementById('leaderboardViewport');
-const lbIframe = document.getElementById('leaderboardIframe');
+const lbBody = document.getElementById('lbBody');
+const lbSyncStatus = document.getElementById('lbSyncStatus');
+const lbContestLabel = document.getElementById('lbContestLabel');
+const lbCutoffLabel = document.getElementById('lbCutoffLabel');
 const gridSizeRange = document.getElementById('gridSizeRange');
 const gridScaleLabel = document.getElementById('gridScaleLabel');
 const scrollSpeedRange = document.getElementById('scrollSpeedRange');
@@ -27,46 +29,138 @@ const spotlightModal = document.getElementById('spotlightModal');
 const spotlightBody = document.getElementById('spotlightBody');
 const spotlightTitle = document.getElementById('spotlightTitle');
 
-// --- Auto Scroll Variables ---
-let scrollInterval = null;
-let scrollDirection = 1;
-
-// ==========================================================================
-// 1. INITIALIZE & BUILD STREAM MATRIX
-// ==========================================================================
 function buildMatrix() {
     stationsGrid.innerHTML = '';
-
     for (let i = 1; i <= config.totalStations; i++) {
         const stationId = `${config.streamPrefix}${i < 10 ? '0' + i : i}`;
-
         const card = document.createElement('div');
         card.className = 'station-card';
         card.id = `card-${stationId}`;
 
-        // VDO.Ninja direct clean peer viewer stream
         const streamUrl = `https://vdo.ninja/?view=${stationId}&autoplay&cleanoutput&transparent`;
 
         card.innerHTML = `
             <div class="station-topbar">
-                <span>>_ ${stationId}</span>
+                <span>&gt;_ ${stationId}</span>
                 <div class="station-controls">
                     <button class="btn-spotlight" onclick="openSpotlight('${stationId}')">⛶ FOCUS</button>
                     <span style="color: var(--mint-bright); font-size: 0.65rem;">● LIVE</span>
                 </div>
             </div>
-            <iframe class="stream-frame" 
-                    src="${streamUrl}" 
+            <iframe class="stream-frame"
+                    src="${streamUrl}"
                     allow="autoplay; camera; microphone; display-capture; fullscreen">
             </iframe>
         `;
         stationsGrid.appendChild(card);
     }
+    updateCutoffHeader();
 }
 
-// ==========================================================================
-// 2. SLIDER & REAL-TIME SIZING CONTROLS
-// ==========================================================================
+function updateCutoffHeader() {
+    const cutoff = Math.ceil(config.totalStations / 2);
+    lbContestLabel.textContent = config.contestSlug;
+    lbCutoffLabel.textContent = `TOP ${cutoff} ADVANCE (50%)`;
+}
+
+function formatSeconds(sec) {
+    const total = Math.max(0, Math.floor(Number(sec) || 0));
+    const hrs = Math.floor(total / 3600);
+    const mins = Math.floor((total % 3600) / 60);
+    const secs = total % 60;
+    if (hrs > 0) {
+        return `${hrs}:${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+    }
+    return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+}
+
+async function fetchLeaderboardNow() {
+    try {
+        lbSyncStatus.textContent = "● SYNCING";
+        const resp = await fetch(`${config.apiBase}/api/leaderboard?slug=${encodeURIComponent(config.contestSlug)}`);
+        const data = await resp.json();
+        const models = Array.isArray(data.models) ? data.models : [];
+        latestLeaderboardModels = models;
+        renderLeaderboard(models);
+
+        const now = new Date();
+        const timeStr = now.toTimeString().split(' ')[0];
+        lbSyncStatus.textContent = `● ${timeStr}`;
+        lbSyncStatus.style.color = "var(--mint-bright)";
+    } catch (err) {
+        lbSyncStatus.textContent = "● OFFLINE";
+        lbSyncStatus.style.color = "var(--danger-red)";
+    }
+}
+
+function renderLeaderboard(models) {
+    if (!models || models.length === 0) {
+        lbBody.innerHTML = `<div class="lb-empty">No submissions recorded yet for<br><strong>${config.contestSlug}</strong></div>`;
+        return;
+    }
+
+    const cutoffCount = Math.ceil(config.totalStations / 2);
+    let html = '';
+
+    models.forEach((entry, idx) => {
+        const rank = entry.rank || (idx + 1);
+        const team = entry.hacker || "Unknown";
+        const score = Number(entry.score || 0).toFixed(1);
+        const timeStr = formatSeconds(entry.time_taken);
+        const rankClass = rank <= 4 ? `rank-${rank}` : '';
+
+        html += `
+            <div class="lb-row ${rankClass}">
+                <span class="col-rank">#${rank}</span>
+                <span class="col-team" title="${team}">${team}</span>
+                <span class="col-score">${score}</span>
+                <span class="col-time">${timeStr}</span>
+            </div>
+        `;
+
+        if (idx + 1 === cutoffCount && models.length > cutoffCount) {
+            html += `<div class="lb-cutoff-divider">▲ TOP ${cutoffCount} ADVANCEMENT CUTOFF ▲</div>`;
+        }
+    });
+
+    lbBody.innerHTML = html;
+}
+
+function exportLeaderboardCSV() {
+    if (!latestLeaderboardModels || latestLeaderboardModels.length === 0) {
+        alert("No leaderboard entries to export yet.");
+        return;
+    }
+    const cutoffCount = Math.ceil(config.totalStations / 2);
+    let csv = "Rank,Leaderboard Handle,Score,Time Seconds,Time Formatted,Cutoff Status\n";
+    latestLeaderboardModels.forEach((entry, idx) => {
+        const rank = entry.rank || (idx + 1);
+        const team = entry.hacker || "Unknown";
+        const score = Number(entry.score || 0).toFixed(2);
+        const sec = Math.floor(Number(entry.time_taken) || 0);
+        const tStr = formatSeconds(sec);
+        const status = (idx + 1) <= cutoffCount ? "ADVANCE" : "ELIMINATED";
+        csv += `${rank},"${team}",${score},${sec},${tStr},${status}\n`;
+    });
+
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `Leaderboard_${config.contestSlug}.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
+}
+
+function copyTabBridgeScript() {
+    const slug = document.getElementById('cfgContestSlug').value.trim() || config.contestSlug;
+    const snippet = `setInterval(async()=>{const r=await fetch('/rest/contests/${slug}/leaderboard?offset=0&limit=100');const d=await r.json();await fetch('http://localhost:8080/api/push_leaderboard',{method:'POST',body:JSON.stringify({slug:'${slug}',data:d})});console.log('Synced to Stage Matrix:',d.models.length);},6000);`;
+    navigator.clipboard.writeText(snippet);
+    const btn = document.getElementById('copyBridgeBtn');
+    btn.textContent = "Copied! Paste in HR Console (F12)";
+    setTimeout(() => { btn.textContent = "Copy Console Bridge Snippet"; }, 3000);
+}
+
 gridSizeRange.addEventListener('input', (e) => {
     const val = e.target.value;
     document.documentElement.style.setProperty('--grid-card-min-width', `${val}px`);
@@ -81,12 +175,8 @@ scrollSpeedRange.addEventListener('input', (e) => {
     restartAutoScroll();
 });
 
-// ==========================================================================
-// 3. DRAGGABLE SPLIT PANE RESIZER
-// ==========================================================================
 let isDragging = false;
-
-paneResizer.addEventListener('mousedown', (e) => {
+paneResizer.addEventListener('mousedown', () => {
     isDragging = true;
     paneResizer.classList.add('dragging');
     document.body.style.cursor = 'col-resize';
@@ -97,8 +187,7 @@ document.addEventListener('mousemove', (e) => {
     if (!isDragging) return;
     const containerRect = document.getElementById('stageContainer').getBoundingClientRect();
     const newWidth = containerRect.right - e.clientX;
-
-    if (newWidth >= 180 && newWidth <= containerRect.width * 0.65) {
+    if (newWidth >= 240 && newWidth <= containerRect.width * 0.65) {
         leaderboardViewport.style.width = `${newWidth}px`;
     }
 });
@@ -112,9 +201,6 @@ document.addEventListener('mouseup', () => {
     }
 });
 
-// ==========================================================================
-// 4. SMART AUTO-SCROLL ENGINE
-// ==========================================================================
 function startAutoScroll() {
     if (scrollInterval) clearInterval(scrollInterval);
     if (config.scrollSpeed === 0) return;
@@ -137,13 +223,9 @@ function restartAutoScroll() {
 gridViewport.addEventListener('mouseenter', () => clearInterval(scrollInterval));
 gridViewport.addEventListener('mouseleave', () => startAutoScroll());
 
-// ==========================================================================
-// 5. BLIND FINISH BLACKOUT PROTOCOL
-// ==========================================================================
 function toggleBlackout() {
     config.isBlackout = !config.isBlackout;
     document.body.classList.toggle('blackout-active', config.isBlackout);
-
     const btn = document.getElementById('blackoutBtn');
     if (config.isBlackout) {
         btn.textContent = "REVEAL LEADERBOARD";
@@ -156,12 +238,9 @@ function toggleBlackout() {
     }
 }
 
-// ==========================================================================
-// 6. SPOTLIGHT FULLSCREEN FOCUS (AUDIENCE HERO VIEW)
-// ==========================================================================
 function openSpotlight(stationId) {
     spotlightTitle.textContent = `>_ AUDITORIUM FOCUS: ${stationId}`;
-    const directStreamUrl = `https://vdo.ninja/?view=${stationId}&autoplay&cleanoutput&transparent`;
+    const directStreamUrl = `https://vdo.ninja/?view=${stationId}&autoplay&cleanoutput`;
     spotlightBody.innerHTML = `<iframe src="${directStreamUrl}" allow="autoplay; display-capture; fullscreen"></iframe>`;
     spotlightModal.classList.add('active');
 }
@@ -175,25 +254,14 @@ document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closeSpotlight();
 });
 
-// ==========================================================================
-// 7. SETTINGS & LEADERBOARD CONTROLS
-// ==========================================================================
 function toggleSettingsDrawer() {
     settingsDrawer.classList.toggle('open');
 }
 
 function toggleLeaderboardCollapse() {
-    if (leaderboardViewport.style.display === 'none') {
-        leaderboardViewport.style.display = 'flex';
-        paneResizer.style.display = 'flex';
-    } else {
-        leaderboardViewport.style.display = 'none';
-        paneResizer.style.display = 'none';
-    }
-}
-
-function reloadLeaderboard() {
-    lbIframe.src = lbIframe.src;
+    const isHidden = leaderboardViewport.style.display === 'none';
+    leaderboardViewport.style.display = isHidden ? 'flex' : 'none';
+    paneResizer.style.display = isHidden ? 'flex' : 'none';
 }
 
 function applyPreset(count) {
@@ -205,18 +273,16 @@ function saveAndApplySettings() {
     const count = parseInt(document.getElementById('cfgTotalStations').value, 10);
     const prefix = document.getElementById('cfgStreamPrefix').value.trim();
 
-    if (slug) {
-        config.contestSlug = slug;
-        lbIframe.src = `https://www.hackerrank.com/contests/${slug}/leaderboard`;
-    }
-
+    if (slug) config.contestSlug = slug;
     if (count && count > 0) config.totalStations = count;
     if (prefix) config.streamPrefix = prefix;
 
     buildMatrix();
+    fetchLeaderboardNow();
     toggleSettingsDrawer();
 }
 
-// Bootstrapping
 buildMatrix();
 startAutoScroll();
+fetchLeaderboardNow();
+setInterval(fetchLeaderboardNow, 8000);
